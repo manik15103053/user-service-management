@@ -1,0 +1,53 @@
+
+@extends('layouts.master')
+@section('main-content')
+    <div class="row mt-5">
+        <div class="col-md-3">
+            @include('layouts.partial.sidebar')
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="title float-left">Update Category</h4>
+                        <a class="btn btn-info float-right" href="{{ route('category.index') }}">Back</a>
+                    </div>
+                    <form action="{{ route('category.update',$category->slug) }}" method="post">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Category name</label>
+                                        <input type="text" class="form-control" id="" name="name" value="{{ $category->name }}">
+                                        <span class="text-danger">
+                                            @error('name')
+                                            {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="priority">Priority</label>
+                                        <input type="text" class="form-control" id="priority" name="priority" value="{{ $category->priority }}">
+                                        <span class="text-danger">
+                                            @error('priority')
+                                            {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
